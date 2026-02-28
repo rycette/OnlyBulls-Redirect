@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OnlyBulls</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #0a0a0a;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #ffffff;
+      text-align: center;
+      padding: 24px;
+    }
+
+    .logo {
+      margin-bottom: 40px;
+    }
+
+    .logo img {
+      width: 96px;
+      height: 96px;
+      border-radius: 20px;
+    }
+
+    h1 {
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: #cccccc;
+      max-width: 320px;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+
+    .badges {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .badge-link img {
+      height: 54px;
+      width: auto;
+      display: block;
+      transition: opacity 0.2s;
+    }
+
+    .badge-link:hover img {
+      opacity: 0.8;
+    }
+
+    .countdown {
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      color: #888888;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="logo">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/09/3c/da/093cda1f-7abb-0b01-81fc-2e9eb2f74ba4/AppIcon-0-0-1x_U007epad-0-1-85-220.png/246x0w.webp" alt="OnlyBulls" onerror="this.style.display='none'" />
+  </div>
+
+  <p id="countdown" class="countdown" style="display:none;"></p>
+
+  <h1>If you're not automatically redirected, choose an app store below.</h1>
+
+  <div class="badges">
+    <a class="badge-link" href="https://apps.apple.com/us/app/onlybulls/id6746166943" target="_blank" rel="noopener">
+      <img
+        src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+        alt="Download on the App Store"
+      />
+    </a>
+    <a class="badge-link" href="https://play.google.com/store/apps/details?id=com.askroi.onlybulls&hl=en_US" target="_blank" rel="noopener">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+        alt="Get it on Google Play"
+      />
+    </a>
+  </div>
+
+  <script>
+    (function () {
+      var iosUrl = "https://apps.apple.com/us/app/onlybulls/id6746166943";
+      var androidUrl = "https://play.google.com/store/apps/details?id=com.askroi.onlybulls&hl=en_US";
+
+      var ua = navigator.userAgent || "";
+      var isIOS = /iPhone|iPad|iPod/i.test(ua);
+      var isAndroid = /Android/i.test(ua);
+
+      var target = null;
+      if (isIOS) target = iosUrl;
+      else if (isAndroid) target = androidUrl;
+
+      if (target) {
+        var seconds = 3;
+        var el = document.getElementById("countdown");
+        el.style.display = "block";
+
+        function tick() {
+          el.textContent = "Redirecting in " + seconds + "...";
+          if (seconds === 0) {
+            window.location.href = target;
+          } else {
+            seconds--;
+            setTimeout(tick, 1000);
+          }
+        }
+
+        tick();
+      }
+    })();
+  </script>
+
+</body>
+</html>
